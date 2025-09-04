@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Remove All Data Attributes & Format</title>
+  <style>
+    body { font-family: sans-serif; padding: 2rem; background: #f0f0f0; }
+    textarea { width: 100%; height: 200px; margin-bottom: 1rem; font-family: monospace; }
+    button { padding: 0.5rem 1rem; font-size: 1rem; cursor: pointer; margin-right: 0.5rem; }
+    pre { background: #fff; padding: 1rem; overflow: auto; white-space: pre-wrap; border: 1px solid #ccc; }
+  </style>
+</head>
+<body>
+  <h1>Remove `data-*` Attributes & Format HTML</h1>
+
+  <textarea id="inputHtml" placeholder="Paste your HTML here"></textarea>
+  <br>
+  <button id="cleanBtn">Clean & Format HTML</button>
+  <button id="copyBtn">Copy to Clipboard</button>
+
+  <h2>Output:</h2>
+  <pre id="outputHtml"></pre>
+
+  <script>
+    // Remove all data-* attributes
+    function removeDataAttributes(el) {
+      [...el.attributes].forEach(attr => {
+        if (attr.name.startsWith('data-')) el.removeAttribute(attr.name);
+      });
+      el.childNodes.forEach(child => {
+        if (child.nodeType === 1) removeDataAttributes(child);
+      });
+    }
+
+    // Format HTML recursively with indentation
+    function formatHTML(el, indent = 0) {
+      const spacing = '  '.repeat(indent);
+      if (el.nodeType === 3) {
+        // Text node
+        const text = el.textContent.trim();
+        return text ? spacing + text + '\n' : '';
+      }
+      if (el.nodeType !== 1) return ''; // ignore comments etc.
+
+      let html = spacing + `<${el.tagName.toLowerCase()}`;
+
+      // Keep all remaining attributes
+      [...el.attributes].forEach(attr => {
+        html += ` ${attr.name}="${attr.value}"`;
+      });
+
+      if (el.childNodes.length === 0) {
+        html += `></${el.tagName.toLowerCase()}>\n`;
+      } else {
+        html += '>\n';
+        el.childNodes.forEach(child => {
+          html += formatHTML(child, indent + 1);
+        });
+        html += spacing + `</${el.tagName.toLowerCase()}>\n`;
+      }
+      return html;
+    }
+
+    document.getElementById('cleanBtn').addEventListener('click', () => {
+      const input = document.getElementById('inputHtml').value;
+      const temp = document.createElement('div');
+      temp.innerHTML = input;
+
+      removeDataAttributes(temp);
+
+      let formatted = '';
+      temp.childNodes.forEach(child => {
+        formatted += formatHTML(child);
+      });
+
+      document.getElementById('outputHtml').textContent = formatted;
+    });
+
+    document.getElementById('copyBtn').addEventListener('click', () => {
+      const output = document.getElementById('outputHtml').textContent;
+      navigator.clipboard.writeText(output).then(() => alert('Copied to clipboard!'));
+    });
+  </script>
+</body>
+</html>
