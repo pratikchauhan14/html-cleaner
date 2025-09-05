@@ -10,18 +10,19 @@
   "build:js": "esbuild src/main.js --bundle --outfile=dist/bundle.js --sourcemap",
   "watch:js": "esbuild src/main.js --bundle --outfile=dist/bundle.js --sourcemap --watch",
   "build": "npm run build:css && npm run build:js",
-  "watch": "concurrently \"npm run watch:js\" \"npm run watch:css\""
+  "watch": "concurrently \"npm run watch:js\" \"npm run watch:css\"",
+  "deploy": "gh-pages -d dist"
 },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pratikchauhan14/html-cleaner.git"
+    "url": "git+https://github.com/pratikchauhan14/hubl-html-cleaner.git"
   },
   "author": "Pratik Chauhan",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/pratikchauhan14/html-cleaner/issues"
+    "url": "https://github.com/pratikchauhan14/hubl-html-cleaner/issues"
   },
-  "homepage": "https://pratikchauhan14.github.io/html-cleaner/",
+  "homepage": "https://pratikchauhan14.github.io/hubl-html-cleaner/",
   "devDependencies": {
     "autoprefixer": "^10.4.21",
     "chokidar": "^4.0.3",
