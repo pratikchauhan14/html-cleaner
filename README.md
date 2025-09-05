@@ -46,7 +46,7 @@ This will build and publish the `dist/` folder to the `gh-pages` branch.
 Once deployed, the app will be live at:
 
 ```
-https://<your-username>.github.io/<repo-name>/
+https://pratikchauhan14.github.io/hubl-html-cleaner/
 ```
 
 ## 📩 Contact
