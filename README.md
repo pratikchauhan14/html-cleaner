@@ -12,36 +12,6 @@ This project was built to make HubSpot CMS development easier by automatically f
 - Works with HubSpot CMS modules, templates, and themes
 - Live demo hosted with GitHub Pages
 
-## 📂 Project Structure
-```
-dist/          # Compiled output (HTML, CSS, JS)
-src/           # Source code (JS, CSS)
-index.html     # Main entry point
-```
-
-## 🔧 Development
-Install dependencies:
-```bash
-npm install
-```
-
-Build project:
-```bash
-npm run build
-```
-
-Watch for changes (development mode):
-```bash
-npm run watch
-```
-
-Deploy to GitHub Pages:
-```bash
-npm run deploy
-```
-
-This will build and publish the `dist/` folder to the `gh-pages` branch.
-
 ## 🌐 Live Demo
 Once deployed, the app will be live at:
 
