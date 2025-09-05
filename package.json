@@ -1,0 +1,38 @@
+{
+  "name": "replace-html",
+  "version": "1.0.0",
+  "description": "Replace HTML",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+  "build:css": "postcss src/input.css -o dist/styles.css",
+  "watch:css": "postcss src/input.css -o dist/styles.css --watch",
+  "build:js": "esbuild src/main.js --bundle --outfile=dist/bundle.js --sourcemap",
+  "watch:js": "esbuild src/main.js --bundle --outfile=dist/bundle.js --sourcemap --watch",
+  "build": "npm run build:css && npm run build:js",
+  "watch": "concurrently \"npm run watch:js\" \"npm run watch:css\""
+},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pratikchauhan14/html-cleaner.git"
+  },
+  "author": "Pratik Chauhan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pratikchauhan14/html-cleaner/issues"
+  },
+  "homepage": "https://pratikchauhan14.github.io/html-cleaner/",
+  "devDependencies": {
+    "autoprefixer": "^10.4.21",
+    "chokidar": "^4.0.3",
+    "concurrently": "^8.2.2",
+    "esbuild": "^0.20.2",
+    "gh-pages": "^6.3.0",
+    "postcss": "^8.5.6",
+    "postcss-cli": "^11.0.1",
+    "tailwindcss": "^3.4.17"
+  },
+  "dependencies": {
+    "@tailwindcss/postcss": "^4.1.13"
+  }
+}
